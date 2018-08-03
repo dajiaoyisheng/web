@@ -1,0 +1,133 @@
+/* 公共样式 */
+
+/* reset.css begin */
+
+/*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+img,
+embed,
+iframe,
+object,
+audio,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+a {
+  color: rgb(160, 171, 181);
+  text-decoration: none;
+}
+
+/* reset.css end */
+.content-wrap {
+  width: 1200px;
+  margin: 0 auto;
+}
+/* 当屏幕宽度小于1200px */
+@media only screen and (max-width: 1200px) {
+  .content-wrap {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+/* 垂直方向居中 begin*/
+/* 相对具有定位属性的父级 */
+/* Vertical centering */
+.v-c {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* Horizontally centered */
+.h-c {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* 垂直方向居中 end */
+.num-color {
+  color: #0a74bb;
+}
