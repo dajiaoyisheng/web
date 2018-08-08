@@ -5,7 +5,7 @@ let PrisonersData = [];
 p.forEach(function(num) {
     PrisonersData.push({
         area: num,
-        pNumItem: Mock.mock('@natural(60, 300)')
+        pNumItem: Mock.mock('@natural(60, 300)'),
     });
 });
 

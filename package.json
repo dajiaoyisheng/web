@@ -17,11 +17,13 @@
     "axios": "^0.18.0",
     "echarts": "^4.1.0",
     "element-ui": "^2.4.5",
+    "es6-promise": "^4.2.4",
     "loading-svg": "^1.0.0",
     "v-charts": "^1.17.9",
     "vue": "^2.5.2",
     "vue-loading-template": "^1.2.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

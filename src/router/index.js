@@ -67,7 +67,6 @@ const router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
-  console.log(to)
   if (to.path === '/workbench') {
     next()
   } else if (to.path === '/prewarning/tvmonitor') {

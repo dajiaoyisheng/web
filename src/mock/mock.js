@@ -4,15 +4,15 @@ import MockAdapter from 'axios-mock-adapter';
 import { PrisonersData } from './data/prisoners';
 import { pieData } from './data/pie';
 import { barData } from './data/bar';
+import { pPostionData } from './data/pposition';
+import { pPTableData } from './data/pptabledata';
 
 export default {
     /**
      * mock bootstrap
      */
-
     bootstrap() {
         let mock = new MockAdapter(axios);
-
         let defaultResData = function() {
             return {
                 status: 0,
@@ -52,6 +52,29 @@ export default {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     defaultResData.data.data = PrisonersData;
+                    resolve([200, defaultResData])
+                }, 1000);
+            });
+        });
+
+        mock.onGet('/pPositionData').reply(config => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    defaultResData.data = pPostionData;
+                    resolve([200, defaultResData])
+                }, 1000);
+            });
+        });
+
+        mock.onPost('/pPTableData').reply(config => {
+            // let page = config.data;
+            
+            console.log('config.data.page',JSON.parse(config.data).page);
+            
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    
+                    defaultResData.data = pPTableData;
                     resolve([200, defaultResData])
                 }, 1000);
             });

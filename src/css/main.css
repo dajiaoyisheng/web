@@ -95,39 +95,175 @@ a {
 }
 
 /* reset.css end */
+
 .content-wrap {
-  width: 1200px;
   margin: 0 auto;
+  position: relative;
+  width: 1200px;
+  font-size: 12px;
 }
+
 /* 当屏幕宽度小于1200px */
+
 @media only screen and (max-width: 1200px) {
   .content-wrap {
     width: 90%;
-    margin: 0 auto;
   }
 }
 
 .fl {
   float: left;
 }
+
 .fr {
   float: right;
 }
+
+.text-center {
+  text-align: center;
+}
+
 /* 垂直方向居中 begin*/
+
 /* 相对具有定位属性的父级 */
+
 /* Vertical centering */
+
 .v-c {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
+
 /* Horizontally centered */
+
 .h-c {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
+
+.clearfix:after {
+  clear: both;
+  content: '.';
+  display: block;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
 /* 垂直方向居中 end */
+/* 横线 begin */
+.h-line {
+  display: block;     /*设置为块级元素会独占一行形成上下居中的效果*/
+  position: relative;   /*定位横线（当横线的父元素）*/
+}
+
+.h-line:after {
+  content: '';                 /*CSS伪类用法*/
+  position: absolute;         /*定位背景横线的位置*/
+  top: 51%;
+  background: #e9ebf0;       /*宽和高做出来的背景横线*/
+  width: 85%;
+  height: 1px;
+}
+
+.h-line:after {
+  right: 0;
+}
+/* 横线 end */
+
+
 .num-color {
   color: #0a74bb;
 }
+
+/* 表格begin */
+
+table {
+  width: 100%;
+  font-size: 12px;
+  color: #606266;
+}
+
+thead {
+  color: #909399;
+  font-weight: 500;
+}
+
+tr {
+  background-color: #fff;
+}
+
+.el-table td,
+.el-table th.is-leaf {
+  border-bottom: 1px solid #ebeef5;
+}
+
+th>.cell {
+  position: relative;
+  word-wrap: normal;
+  vertical-align: middle;
+  width: 100%;
+}
+
+td {
+  transition: background-color .25s ease;
+}
+
+th {
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+  text-align: left;
+  background-color: #fff;
+}
+
+td,
+th {
+  border-bottom: 1px solid #ebeef5;
+  padding: 12px 0;
+  min-width: 0;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative;
+}
+
+.cell {
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+  line-height: 23px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* 表格end */
+
+/* .el-input__inner{
+  height: 30px;
+  line-height: 30px;
+} */
+
+/* 分页begin */
+.el-pagination-wrap {
+  padding: 20px 0;
+}
+.el-pagination__jump {
+  margin-left: 0;
+}
+
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+  border: 1px solid #dcdcdc;
+}
+
+.el-pager li {
+  font-size: 12px;
+}
+
+/* 分页end */

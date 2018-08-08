@@ -70,30 +70,32 @@
         </div>
       </div>
     </section>
-    <vue-loading v-show="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>
+    <!-- <h2>{{msg}}</h2>
+    <hr/>
+    <h3>{{this.$store.state.count}}</h3> -->
+    <!-- <vue-loading class="v-c h-c" v-show="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading> -->
   </div>
 </template>
 <script>
   export default {
     name: 'workbench',
     data() {
-      this.chartSettings = {
-        labelMap: {
-          'PV': '访问用户',
-          'Order': '下单用户'
-        },
-        legendName: {
-          '访问用户': '访问用户 total: 10000'
-        }
-      }
       return {
         personnum: '',
         areasDetail: [],
         benchChartPieData: [],
         benchChartbarData: [],
+        chartSettings: {
+          labelMap: {
+            'PV': '访问用户',
+            'Order': '下单用户'
+          },
+          legendName: {
+            '访问用户': '访问用户 total: 10000'
+          }
+        },
         prisonersStutas: [],
         value1: true,
-        loading: false,
         formData: {
           id: '21',
           name: 'cjd'
@@ -106,9 +108,14 @@
       // 犯人总数
       this.$ajxj.get('/getPrisonersData')
         .then(function (res) {
-          // handle success
           _this.areasDetail = res.data.data
-          _this.personnum = res.data.personnum
+
+          let temArray = [];
+          _this.areasDetail.map(function (val) {
+            temArray.push(val.pNumItem)
+          })
+          _this.personnum = eval(temArray.join('+'))
+
         })
         .catch(function (error) {
           // handle error
@@ -120,6 +127,7 @@
       // 人员分类
       this.$ajxj.get('/getBenchChartPie')
         .then(function (res) {
+          // _this.loading = false;
           _this.benchChartPieData = res.data
         }).catch(function (error) {
           console.log(error);
@@ -127,6 +135,7 @@
       // 预警事件分类
       this.$ajxj.get('/getBenchChartbarData')
         .then(function (res) {
+          // _this.loading = false;
           _this.benchChartbarData = res.data
         }).catch(function (error) {
           console.log(error);
@@ -134,17 +143,14 @@
       // 人员状态
       this.$ajxj.get('/prisonersStutas')
         .then(function (res) {
+          // _this.loading = false;
           _this.prisonersStutas = res.data.data
         }).catch(function (error) {
           console.log(error);
         }).then(function () {});
-    },
-    methods: {
-      submit() {
-        this.loading = true
-      }
     }
   }
+
 </script>
 
 <style>
@@ -205,6 +211,7 @@
 
   .bench-item-right ul li {
     margin-bottom: 4%;
+    width: 50%;
   }
 
   .bench-item-right ul li:nth-child(odd) {

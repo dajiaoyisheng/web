@@ -1,40 +1,278 @@
 <template>
   <div>
-    <span>人员定位</span>
-    <vue-loading v-show="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>
+    <!-- 左 -->
+    <section class="pposition-l">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <div class="cell">序号</div>
+            </th>
+            <th>
+              <div class="cell">姓名</div>
+            </th>
+            <th>
+              <div class="cell">编号</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in pPositionData" :key="item.name">
+            <td>
+              <div class="cell">{{index+1}}</div>
+            </td>
+            <td>
+              <div class="cell">{{item.name}}</div>
+            </td>
+            <td>
+              <div class="cell">{{item.numbering}}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="pposition-r">
+      <!-- 右上 -->
+      <section class="pp-r-t">
+        <span>监区:</span>
+        <el-select size="small" v-model="value" placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+        <span>监舍:</span>
+        <el-select size="small" v-model="value" placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+        <span>房间:</span>
+        <el-select size="small" v-model="value" placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+        <span>监管类型:</span>
+        <el-select size="small" v-model="value" placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+        <span>服刑人员:</span>
+        <el-input size="small" class="pp-input" v-model="input" placeholder="请输入内容"></el-input>
+        <el-button size="small" type="primary">搜索</el-button>
+      </section>
+      <!-- 右下 -->
+      <section class="pp-r-d clearfix">
+        <!-- 右下左 -->
+        <section class="pp-r-d-l">
+          <p class="h-line">基本信息</p>
+          <div class="pp-r-d-l-l fl">
+            <div>
+              <span>编号:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>出生日期:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>出生日期:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>已服刑时长:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+          </div>
+          <div class="pp-r-d-l-r fr">
+            照片
+          </div>
+          <!-- 右下 -->
+          <!-- <section class="pp-r-d-m"></section> -->
+
+        </section>
+        <!-- 右下右 -->
+        <section class="pp-r-d-r">
+          <p class="h-line">当日预警事件</p>
+          <el-table :data="pPTableData" stripe style="width: 100%">
+            <!-- <el-table-column type="index" width="50">
+            </el-table-column> -->
+            <el-table-column prop="starttime" label="预警开始时间">
+            </el-table-column>
+            <el-table-column prop="endtime" label="预警结束时间">
+            </el-table-column>
+            <el-table-column prop="during" label="预警时长">
+            </el-table-column>
+            <el-table-column prop="tyle" label="预警事件类型">
+            </el-table-column>
+            <el-table-column prop="area" label="所在区域">
+            </el-table-column>
+            <el-table-column label="监控视频">
+              <template slot-scope="scope">
+                <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">视频</el-button> -->
+                <button @click="handleEdit(scope.$index, scope.row)">视频</button>
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="el-pagination-wrap text-center">
+            <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
+              :page-size="10" layout="prev, pager, next, jumper" :total="this.page">
+            </el-pagination>
+          </div>
+        </section>
+      </section>
+    </section>
   </div>
 </template>
+<style>
+  /* section,.el-input {
+    display: inline-block;
+  } */
 
+  .pposition-l {
+    width: 15%;
+    display: inline-block;
+  }
+
+  .pposition-r {
+    width: 84%;
+    display: inline-block;
+    float: right;
+  }
+
+  tr {
+    cursor: pointer;
+  }
+
+  td {
+    width: 33%;
+  }
+
+  .el-select,
+  .pp-input {
+    width: 12%;
+  }
+
+  .pp-r-t {
+    height: 40px;
+    line-height: 40px;
+    background-color: #f6f9fa;
+    padding: 0 3%;
+  }
+
+  .pp-r-d {
+    /* width: 25%; */
+    background-color: #f5f5f5;
+    padding: 20px 3%;
+  }
+
+  .pp-r-d-l {
+    width: 40%;
+    display: inline-block;
+  }
+
+  .pp-r-d-l .el-input {
+    width: 52%;
+    margin-bottom: 14px;
+  }
+
+  .pp-r-d-l-l,
+  .pp-r-d-l-r {
+    width: 50%;
+    display: inline-block
+  }
+
+
+  p {
+    margin-bottom: 17px;
+    color: #0a74bb;
+  }
+
+  .pp-r-d .pp-r-d-l span {
+    display: inline-block;
+    width: 45%;
+    text-align: right;
+  }
+
+  .pp-r-d-r {
+    width: 58%;
+    float: right;
+  }
+
+</style>
 <script>
-export default {
-  name: 'personnelposition',
-  data () {
-    return {
-      loading: false,
-      formData: {
-        name: '',
-        passwd: ''
+  export default {
+    name: 'personnelposition',
+    data() {
+      return {
+        input: '',
+        loading: false,
+        formData: {
+          name: '',
+          passwd: ''
+        },
+        pPositionData: [],
+        pPTableData: [],
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],
+        value: '',
+        currentPage3: 1,
+        page: 1
       }
-    }
-  },
-  methods: {
-    submit () {
-      this.loading = true
-      provider.login(this, this.formData).then(data => {
-      // provider.login(this, {UserPo: this.formData}).then(data => {
-        this.loading = false
-        if (data.body.header.status === 1) {
-          localStorage.setItem('token', data.body.body.token)
-          console.log(localStorage.getItem('token'))
-          localStorage.setItem('userInfo', JSON.stringify(data.body.userInfo))
-          this.$router.push({path: '/prewarning'})
-        } else {
-          // alert(data.body.errorMessage)
-          alert(data.body.body.errorMessage)
-        }
-      })
+    },
+    created: function () {
+      var _this = this;
+      this.$ajxj.get('/pPositionData')
+        .then(function (res) {
+          // _this.loading = false;
+          _this.pPositionData = res.data.data
+          _this.page = res.data.total
+          console.log(_this.page);
+        }).catch(function (error) {
+          console.log(error);
+        }).then(function () {});
+      this.getTableData();
+    },
+    methods: {
+      getTableData(p) {
+        var _this = this
+        this.$ajxj.post('/pPTableData', {
+            page: p || 1
+          })
+          .then(function (res) {
+            // _this.loading = false;
+            _this.pPTableData = res.data.data
+            console.log("_this.pPTableData", _this.pPTableData);
+            _this.page = res.data.total
+          }).catch(function (error) {
+            console.log(error);
+          }).then(function () {});
+      },
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        this.getTableData(val);
+        console.log(`当前页: ${val}`);
+      },
+      handleEdit(index, row) {
+        // window.location.href = row.tv;
+        console.log(index, row);
+        window.open(row.tv)
+      },
     }
   }
-}
-</script>
 
+</script>

@@ -1,54 +1,5 @@
 <template>
   <div id="app">
-    <!-- <nav class="nav-bar">
-      <div class="nav-w">
-        <ul class="nav-wrap clearfix">
-          <li>
-            <img src="./assets/logo.png" alt="" class="logo-img">
-            <router-link class="link-item" to="/workbench">监狱智能监控系统</router-link>
-          </li>
-          <li>
-            <router-link active-class="active" class="link-item" to="/workbench">工作台</router-link>
-          </li>
-          <li class="dropdown">
-            <a class="link-item">监控预警</a>
-            <ul class="twolevel">
-              <li>
-                <router-link active-class="active" class="link-item" to="/prewarning/tvmonitor">视频监控</router-link>
-              </li>
-              <li>
-                <router-link active-class="active" class="link-item" to="/prewarning/personnelposition">人员定位</router-link>
-              </li>
-              <li>
-                <router-link active-class="active" class="link-item" to="/prewarning/pointname">在押人员点名</router-link>
-              </li>
-              <li>
-                <router-link active-class="active" class="link-item" to="/prewarning/posunusual">定位异常预警</router-link>
-              </li>
-              <li>
-                <router-link active-class="active" class="link-item" to="/prewarning/violation">违规预警</router-link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <router-link active-class="active" class="link-item" to="/querystats">查询统计</router-link>
-          </li>
-          <li>
-            <router-link active-class="active" class="link-item" to="/systemset">系统设置</router-link>
-          </li>
-          <li>
-            <router-link active-class="active" class="link-item" to="/systemmanagement">系统管理</router-link>
-          </li>
-          <li>
-            <input type="text" placeholder="搜索">
-          </li>
-          <li>
-            <span class="user-w color-fff">cjd</span>
-            <a class="color-fff" @click="loginout()">退出登录</a>
-          </li>
-        </ul>
-      </div>
-    </nav> -->
     <nav class="content-wrap-nav">
       <el-menu :default-active="activeIndex2" class="content-wrap" mode="horizontal" @select="handleSelect" background-color="#2f323c"
         text-color="#a0abb5" active-text-color="#fff">
@@ -88,21 +39,27 @@
         </el-menu-item>
       </el-menu>
     </nav>
-    <div class="content-wrap">
+    <div class="content-wrap clearfix">
       <router-view class="content" />
+      <vue-loading class="v-c h-c" v-show="this.$store.state.loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>
     </div>
   </div>
 </template>
 
 <script>
+  // import state from '@/vuex/store'
   export default {
     name: 'App',
     data() {
       return {
+        // loading: true,
         activeIndex: '1',
         activeIndex2: '1',
         input: ''
       };
+    },
+    created() {
+
     },
     computed: {
       userInfo() {
@@ -112,24 +69,24 @@
     },
     methods: {
       loginout() {
-        return ''
+        // console.log(this.$store.state.loading);
+        
+        // this.$store.state.loading = false;
       },
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
       }
+    },
+    mounted() {
+      this.loginout()
     }
   }
 
-  // import $ from 'jquery';
-  // import 'bootstrap/dist/css/bootstrap.css'
-  // import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-
 </script>
 <style>
-.content-wrap-nav{
-  background-color: rgb(47, 50, 60);
-  height: 60px;
-}
+  .content-wrap-nav {
+    background-color: rgb(47, 50, 60);
+    height: 60px;
+  }
 
 </style>

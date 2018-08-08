@@ -5,6 +5,10 @@ import App from './App';
 import router from './router';
 import axios from './axios';
 Vue.prototype.$ajxj = axios;
+import 'es6-promise/auto'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+import store from './vuex/store'
 import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(Element);
@@ -16,17 +20,18 @@ import VCharts from 'v-charts';
 Vue.use(VCharts);
 import Mock from './mock';
 if (process.env.NODE_ENV === 'development') {
-    Mock.bootstrap();
+  Mock.bootstrap();
 }
 
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    router,
-    components: {
-        App
-    },
-    template: '<App/>'
+  el: '#app',
+  router,
+  store,
+  components: {
+    App
+  },
+  template: '<App/>'
 })
