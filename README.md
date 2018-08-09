@@ -6,7 +6,6 @@
 
 ``` bash
 # 安装依赖，执行这个命令后会创建node_modules目录和package-lock.json文件
-# 现在项目中已经安装好依赖了，不用再执行这个命令了
 npm install
 
 # 开发环境默认使用8080端口
