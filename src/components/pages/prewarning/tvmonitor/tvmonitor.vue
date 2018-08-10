@@ -1,8 +1,6 @@
 <template>
   <div>
     <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
-
-    <vue-loading v-show="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>
   </div>
 </template>
 

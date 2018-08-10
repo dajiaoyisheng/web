@@ -66,14 +66,9 @@ export default {
             });
         });
 
-        mock.onPost('/pPTableData').reply(config => {
-            // let page = config.data;
-            
-            console.log('config.data.page',JSON.parse(config.data).page);
-            
+        mock.onPost('/pPTableData').reply(config => {            
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    
                     defaultResData.data = pPTableData;
                     resolve([200, defaultResData])
                 }, 1000);

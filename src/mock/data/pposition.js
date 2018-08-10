@@ -9,7 +9,7 @@ let pPostionData = {
 for (let i = 0; i < p; i++) {
   pPostionData.data.push({
     name: Mock.mock('@cname()'),
-    numbering: Mock.mock('@natural(600, 1000)')
+    numbering: Mock.mock('@natural(1000000, 9999999)')
   });
 }
 

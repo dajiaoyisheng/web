@@ -70,20 +70,134 @@
               <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
             </div>
             <div>
-              <span>出生日期:</span>
+              <span>姓名:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>性别:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>民族:</span>
               <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
             </div>
             <div>
               <span>出生日期:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>文化程度:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>婚姻状况:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>罪名:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>刑期:</span>
               <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
             </div>
             <div>
               <span>已服刑时长:</span>
               <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
             </div>
+            <div>
+              <span>剩余时长:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div class="div-select">
+              <span>监区:</span>
+              <el-select size="small" v-model="value" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
+            <div class="div-select">
+              <span>监舍:</span>
+              <el-select size="small" v-model="value" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
+            <div class="div-select">
+              <span>楼层:</span>
+              <el-select size="small" v-model="value" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
+            <div class="div-select">
+              <span>房间:</span>
+              <el-select size="small" v-model="value" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
+            <div class="div-select">
+              <span>监管类型:</span>
+              <el-select size="small" v-model="value" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
+            <div>
+              <span>责任预警:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>籍贯:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+              <span>省</span>
+            </div>
+            <div>
+              <span></span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+              <span>市</span>
+            </div>
+            <div>
+              <span>家庭联系人:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
+            <div>
+              <span>联系电话:</span>
+              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            </div>
           </div>
           <div class="pp-r-d-l-r fr">
-            照片
+            <div class="imgWrap" title="照片">
+              <span class="pp-photo"></span>
+              <div>
+                <img src="@/assets/pp-p.png" alt="">
+                <span>正面</span>
+              </div>
+              <div>
+                <img src="@/assets/pp-p.png" alt="">
+                <span>低头</span>
+              </div>
+              <div>
+                <img src="@/assets/pp-p.png" alt="">
+                <span>侧面</span>
+              </div>
+              <div>
+                <img src="@/assets/pp-p.png" alt="">
+                <span>抬头</span>
+              </div>
+            </div>
+            <div class="imgWrap" title="视觉识别码">
+              <span></span>
+              <div>
+                <img src="@/assets/pp-p.png" alt="">
+                <span>正面</span>
+              </div>
+              <div>
+                <img src="@/assets/pp-p.png" alt="">
+                <span>低头</span>
+              </div>
+            </div>
           </div>
           <!-- 右下 -->
           <!-- <section class="pp-r-d-m"></section> -->
@@ -132,8 +246,13 @@
     display: inline-block;
   }
 
+  .pposition-l .pp-td-w {
+    width: 20%;
+    background-color: #fff;
+  }
+
   .pposition-r {
-    width: 84%;
+    width: 85%;
     display: inline-block;
     float: right;
   }
@@ -142,26 +261,30 @@
     cursor: pointer;
   }
 
-  td {
+  /* td {
     width: 33%;
-  }
-
-  .el-select,
-  .pp-input {
-    width: 12%;
-  }
+  } */
 
   .pp-r-t {
     height: 40px;
     line-height: 40px;
     background-color: #f6f9fa;
-    padding: 0 3%;
+    padding: 0 1%;
+  }
+
+  .pp-r-t .el-select,
+  .pp-r-t .pp-input {
+    width: 12%;
+  }
+
+  .pp-r-d-l-l .el-select {
+    width: 52%;
   }
 
   .pp-r-d {
     /* width: 25%; */
     background-color: #f5f5f5;
-    padding: 20px 3%;
+    padding: 20px 1%;
   }
 
   .pp-r-d-l {
@@ -174,26 +297,88 @@
     margin-bottom: 14px;
   }
 
+  .pp-r-d-l .div-select .el-input {
+    width: 100%;
+  }
+
+  .pp-r-d-l .el-input:nth-child(12),
+  .pp-r-d-l .el-input:nth-child(13),
+  .pp-r-d-l .el-input:nth-child(14),
+  .pp-r-d-l .el-input:nth-child(15),
+    {
+    width: 100%
+  }
+
   .pp-r-d-l-l,
   .pp-r-d-l-r {
     width: 50%;
     display: inline-block
   }
 
+  .pp-r-d-l-r .imgWrap {
+    width: 95%;
+    border: 1px solid #dcdcdc;
+    position: relative;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 15px;
+  }
 
-  p {
+  .imgWrap>span {
+    position: absolute;
+    left: 50%;
+    left: 5%;
+    top: -0.4%;
+    width: 6em;
+    background-color: #fff;
+    height: 1px;
+  }
+
+  .imgWrap>span.pp-photo {
+    width: 3em;
+  }
+
+  .imgWrap::before {
+    content: attr(title);
+    position: absolute;
+    left: 5%;
+    top: -0.7em;
+    padding: 0 10px;
+    z-index: 99;
+  }
+
+  .imgWrap:nth-child(2) {
+    margin-top: 20px;
+  }
+
+  .pp-r-d-l-r .imgWrap>div {
+    width: 45%;
+    display: inline-block;
+  }
+
+  /* .pp-r-d-l-r .imgWrap>span {
+    position: absolute;
+    top: -10px;
+    left: 3%;
+  } */
+
+  .pp-r-d-l-r .imgWrap>div>span {
+    display: inline-block;
+  }
+
+  p.h-line {
     margin-bottom: 17px;
     color: #0a74bb;
   }
 
-  .pp-r-d .pp-r-d-l span {
+  .pp-r-d .pp-r-d-l .pp-r-d-l-l div span:nth-child(1) {
     display: inline-block;
-    width: 45%;
+    width: 34%;
     text-align: right;
   }
 
   .pp-r-d-r {
-    width: 58%;
+    width: 60%;
     float: right;
   }
 
@@ -205,10 +390,6 @@
       return {
         input: '',
         loading: false,
-        formData: {
-          name: '',
-          passwd: ''
-        },
         pPositionData: [],
         pPTableData: [],
         options: [{
@@ -254,11 +435,8 @@
           .then(function (res) {
             // _this.loading = false;
             _this.pPTableData = res.data.data
-            console.log("_this.pPTableData", _this.pPTableData);
             _this.page = res.data.total
-          }).catch(function (error) {
-            console.log(error);
-          }).then(function () {});
+          }).catch(function (error) {}).then(function () {});
       },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);

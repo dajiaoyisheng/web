@@ -40,8 +40,8 @@
       </el-menu>
     </nav>
     <div class="content-wrap clearfix">
-      <router-view class="content" />
-      <vue-loading class="v-c h-c" v-show="this.$store.state.loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>
+      <router-view class="content clearfix" />
+      <vue-loading class="fixed-center" v-show="this.$store.state.loading" type="bars" color="#0a74bb" :size="{ width: '50px', height: '50px' }"></vue-loading>
     </div>
   </div>
 </template>
@@ -52,7 +52,6 @@
     name: 'App',
     data() {
       return {
-        // loading: true,
         activeIndex: '1',
         activeIndex2: '1',
         input: ''
@@ -69,9 +68,6 @@
     },
     methods: {
       loginout() {
-        // console.log(this.$store.state.loading);
-        
-        // this.$store.state.loading = false;
       },
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
@@ -87,6 +83,9 @@
   .content-wrap-nav {
     background-color: rgb(47, 50, 60);
     height: 60px;
+    position: fixed;
+    z-index: 9999999;
+    width: 100%;
   }
 
 </style>

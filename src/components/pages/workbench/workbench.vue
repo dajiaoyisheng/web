@@ -5,7 +5,6 @@
       <el-switch v-model="value1" active-color="#13ce66" inactive-color="#ff4949">
       </el-switch>
     </section>
-
     <section class="bench-item-wrap">
       <div class="bench-item-header">
         <img src="" alt="">
@@ -109,13 +108,11 @@
       this.$ajxj.get('/getPrisonersData')
         .then(function (res) {
           _this.areasDetail = res.data.data
-
           let temArray = [];
           _this.areasDetail.map(function (val) {
             temArray.push(val.pNumItem)
           })
           _this.personnum = eval(temArray.join('+'))
-
         })
         .catch(function (error) {
           // handle error

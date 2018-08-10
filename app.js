@@ -1,3 +1,4 @@
+
 var express = require('express');
 var app = express();
 var Mock = require('mockjs');
@@ -10,6 +11,7 @@ app.all('*', function (req, res, next) {
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
 });
+
 app.get('/getPrisonersData', function (req, res) {
   res.send({
     "status": 0,

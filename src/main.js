@@ -6,8 +6,6 @@ import router from './router';
 import axios from './axios';
 Vue.prototype.$ajxj = axios;
 import 'es6-promise/auto'
-import Vuex from 'vuex'
-Vue.use(Vuex)
 import store from './vuex/store'
 import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -16,22 +14,35 @@ Vue.use(Element);
 import './css/main.css';
 import VueLoading from 'vue-loading-template';
 Vue.use(VueLoading);
-import VCharts from 'v-charts';
-Vue.use(VCharts);
+// import VCharts from 'v-charts';
+
+// import VePie from 'v-charts/lib/pie.common';
+// import VeBar from 'v-charts/lib/bar.common';
+import {
+    VePie,
+    VeBar
+} from 'v-charts/lib';
+
+// Vue.use(VCharts);
+Vue.component(VePie.name, VePie);
+Vue.component(VeBar.name, VeBar);
+// Vue.component({VeBar.name: VeBar,VePie.name: VePie});
+
 import Mock from './mock';
 if (process.env.NODE_ENV === 'development') {
-  Mock.bootstrap();
+    Mock.bootstrap();
 }
 
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
+
 new Vue({
-  el: '#app',
-  router,
-  store,
-  components: {
-    App
-  },
-  template: '<App/>'
+    el: '#app',
+    router,
+    store,
+    components: {
+        App
+    },
+    template: '<App/>'
 })
